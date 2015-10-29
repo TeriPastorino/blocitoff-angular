@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html ng-app="blocList">
+
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>Stuff to Get Done</title>
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="/styles/style.css">
-</head>
-<body>
-  <div ng-controller="TasksController">
-    <div ng-repeat="task in tasks">{{tasks}}</div>
-  </div>
+  <meta charset="UTF-8">
+  <title>To Do's</title>
   
-  <!--  <div ui-view></div>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>To Do's</h1>
+        <div id="task-list">
+          <div ng-controller="TasksController">
+            <div class="form-group">
+              <label for="taskDescription">Description</label>
+              <input type="text" class="form-control" id="taskName" ng-model="taskName" placeholder="Add your task here">  
+            </div>
+            <div class="form-group">
+              <button ng-click="addTask()">ADD</button>
+            </div>
+            <ul>
+              <li ng-repeat="task in tasks">{{task.name}} {{task.completed}} {{task.status}} {{ task.timeCreated | date: "shortDate" }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
   create view based on user stories; active tasks, completed tasks, active tasks with check marks, active tasks with entry field-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.24/angular.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.0.5/firebase.js"></script>
@@ -19,4 +45,5 @@
   <script src="/scripts/app.js"></script>
   <script src="/scripts/tasks-controller.js"></script>
 </body>
+
 </html>
